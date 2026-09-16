@@ -7,7 +7,25 @@
 <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-<h1 id="titulo">Diario del desarrollador</h1>
-<p>Soy [ESCRIBE TU NOMBRE] y este es mi primer proyecto de DWEC.</p>
-<script src="app.js"></script>
+  <nav class="navbar">
+    <div class="nav-content">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="trabajo1.html">Trabajo 1</a></li>
+      </ul>
+      <button id="themeToggle" type="button" class="theme-toggle">Modo claro</button>
+    </div>
+  </nav>
+
+  <h1 id="titulo">Diario del desarrollador</h1>
+  <p>Soy Javier Doñoro y este es mi primer proyecto de DWEC.</p>
+
+  <section class="contador-section">
+    <button id="contadorBtn" type="button" class="contador-btn">Pulsame</button>
+    <p>Veces pulsadas: <span id="contador">0</span></p>
+  </section>
+
+  <script src="app.js"></script>
 </body>
+
+</html>
