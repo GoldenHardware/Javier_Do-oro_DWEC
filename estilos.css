@@ -1,6 +1,6 @@
 body {
-  --bg-color: #0b1020;
-  --bg-accent: #121b2d;
+  --bg-color: #050508; /* fondo más oscuro y profesional */
+  --bg-accent: #0a0a10;
   --text-color: #e7edf8;
   --muted-text: #a9b7d1;
   --nav-bg: rgba(18, 27, 45, 0.82);
@@ -14,7 +14,7 @@ body {
   --button-primary-hover: #3c7df0;
   --border-color: rgba(255, 255, 255, 0.08);
   font-family: "Segoe UI", system-ui, sans-serif;
-  background: linear-gradient(135deg, var(--bg-color) 0%, #111c2f 100%);
+  background: linear-gradient(135deg, var(--bg-color) 0%, var(--bg-accent) 100%);
   color: var(--text-color);
   margin: 0;
   min-height: 100vh;
@@ -45,20 +45,59 @@ body.light-mode {
   padding: 0 20px;
 }
 
+/* Asegurar que el contenido esté por encima del canvas de partículas */
+.page-shell {
+  position: relative;
+  z-index: 1;
+}
+
+/* Canvas de partículas: fondo interactivo */
+#particles {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+  pointer-events: none; /* permitir interacción con la UI */
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.6));
+}
+
 .navbar {
-  background-color: var(--nav-bg);
+  background: var(--nav-bg);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
-  padding: 14px 22px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  padding: 14px 20px;
+  box-shadow: 0 8px 28px rgba(2,6,23,0.28);
+  backdrop-filter: blur(6px);
 }
 
 .nav-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* centrar el contenido */
   align-items: center;
-  gap: 16px;
+  gap: 20px;
+  position: relative; /* para posicionar .nav-actions a la derecha */
+}
+
+.brand a {
+  color: var(--nav-text);
+  font-weight: 800;
+  font-size: 1.12rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.brand a::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, var(--button-primary), #3aa0ff);
+  box-shadow: 0 4px 10px rgba(79,140,255,0.16);
 }
 
 .navbar ul {
@@ -73,24 +112,60 @@ body.light-mode {
 .navbar a {
   color: var(--nav-text);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.02em;
-  transition: color 0.2s ease;
+  transition: color 0.18s ease, transform 0.12s ease;
 }
 
 .navbar a:hover {
   color: var(--nav-hover);
+  transform: translateY(-1px);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 18px;
+  margin: 0 auto; /* centrar el bloque de enlaces */
+  padding: 0;
+  align-items: center;
+}
+
+.nav-links a {
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: var(--nav-text);
+}
+
+.nav-links a.active {
+  background: rgba(79,140,255,0.12);
+  color: #ffffff;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: absolute; /* mantener acciones a la derecha */
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .theme-toggle {
   background-color: var(--button-bg);
   color: var(--button-text);
-  border: none;
+  border: 1px solid var(--border-color);
   border-radius: 10px;
-  padding: 9px 14px;
+  padding: 8px 12px;
   cursor: pointer;
   font-weight: 700;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Ajustes para modo claro: canvas más suave y navbar usa variables */
+body.light-mode #particles {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.06));
 }
 
 .content-card {
@@ -145,4 +220,81 @@ h1 {
   margin: 16px 0 0;
   font-size: 1.08rem;
   font-weight: 600;
+}
+
+/* Tabla de videojuegos - Fase 2: estilo, legibilidad y dinamismo */
+.table-responsive {
+  overflow-x: auto;
+  margin-top: 18px;
+  border-radius: 12px; /* redondear el contenedor para recortar esquinas */
+  /* permitir recorte del fondo/hover dentro del contenedor */
+  overflow: auto;
+}
+
+#tablaJuegos, .game-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 8px 30px rgba(2,6,23,0.25);
+  border-radius: 12px; /* esquinas superiores e inferiores redondeadas */
+}
+
+#tablaJuegos caption {
+  caption-side: top;
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 700;
+  color: var(--muted-text);
+}
+
+#tablaJuegos thead th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 800;
+  color: #ffffff;
+  background: linear-gradient(90deg, var(--button-primary) 0%, #3aa0ff 100%);
+  border-bottom: 2px solid rgba(0,0,0,0.06);
+}
+
+/* Asegurar que las celdas de la cabecera respeten el radio en las esquinas */
+#tablaJuegos thead th:first-child {
+  border-top-left-radius: 12px;
+}
+#tablaJuegos thead th:last-child {
+  border-top-right-radius: 12px;
+}
+
+/* Esquinas inferiores redondeadas en las celdas de la última fila */
+#tablaJuegos tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+#tablaJuegos tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}
+
+#tablaJuegos tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+/* Efecto cebra */
+#tablaJuegos tbody tr:nth-child(odd) {
+  background: rgba(255,255,255,0.01);
+}
+#tablaJuegos tbody tr:nth-child(even) {
+  background: rgba(255,255,255,0.025);
+}
+
+/* Hover en filas */
+#tablaJuegos tbody tr:hover {
+  background: rgba(79, 140, 255, 0.08);
+  transition: background-color 0.15s ease;
+}
+
+@media (max-width: 520px) {
+  #tablaJuegos thead th, #tablaJuegos tbody td {
+    padding: 10px 12px;
+    font-size: 0.95rem;
+  }
 }

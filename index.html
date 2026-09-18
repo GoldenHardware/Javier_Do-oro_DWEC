@@ -7,14 +7,18 @@
 <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
+  <canvas id="particles" aria-hidden="true"></canvas>
   <div class="page-shell">
     <nav class="navbar">
       <div class="nav-content">
-        <ul>
-          <li><a href="index.html">Inicio</a></li>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Inicio</a></li>
           <li><a href="trabajo1.html">Trabajo 1</a></li>
         </ul>
-        <button id="themeToggle" type="button" class="theme-toggle">Modo claro</button>
+
+        <div class="nav-actions">
+          <button id="themeToggle" type="button" class="theme-toggle">Modo claro</button>
+        </div>
       </div>
     </nav>
 

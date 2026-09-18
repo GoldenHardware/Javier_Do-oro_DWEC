@@ -7,18 +7,46 @@
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="page-shell">
   <nav class="navbar">
     <div class="nav-content">
-      <ul>
+      <ul class="nav-links">
         <li><a href="index.html">Inicio</a></li>
-        <li><a href="trabajo1.html">Trabajo 1</a></li>
+        <li><a href="trabajo1.html" class="active">Trabajo 1</a></li>
       </ul>
-      <button id="themeToggle" type="button" class="theme-toggle">Modo claro</button>
+
+      <div class="nav-actions">
+        <button id="themeToggle" type="button" class="theme-toggle">Modo claro</button>
+      </div>
     </div>
   </nav>
 
   <h1>Trabajo 1</h1>
   <p>Esta es la página del Trabajo 1.</p>
+
+  <section>
+    <h2>Lista de videojuegos</h2>
+    <div class="table-responsive">
+    <table id="tablaJuegos" class="game-table">
+      <caption>Videojuegos: Nombre, Compañía, Plataforma, Valoración y Precio</caption>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Compañía</th>
+          <th>Plataforma</th>
+          <th>Valoración</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- El contenido de las filas se rellenará desde JavaScript (Fase 3) -->
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  </div>
 
   <script src="app.js"></script>
 </body>
